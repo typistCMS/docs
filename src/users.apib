@@ -1,0 +1,99 @@
+## User [/user/{id}]
+A user is an intity of having access of manage contents, such as create post, manage category, etc.
+
+### Delete an User [DELETE]
++ Parameters
+    + id (string) - ID of user which will be deleted.
+
++ Response 204 (application/json)
+
+        {
+            "id": "{id}",
+            "msg": "User deleted."
+        }
+
+### Update User Information [PUT]
+NOTE: Parameters excluding id are optional.
++ Parameters
+    + id (string) - ID of user which will be updated.
+    + name (string) - New name
+    + email (string) - New email
+    + password (string) -New password
+
++ Response 200 (application/json)
+
+        {
+            "id": "{id}",
+            "name": "NewEveleen",
+            "email": "foo@bar.com"
+        }
+
+## Users Collection [/users]
+A collection of users.
+
+### List All Users [GET]
+List all users.
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "Eveleen"
+            }
+            ...
+        ]
+
+### Create a New User [POST]
+Create an user.
++ Request 
+
+    + Header
+        
+        Authorization: JWT "JWT_TOKEN_HERE"
+
+    + Parameters
+        + name (string) - New create user name.
+        + email (string) - New create user's email.
+        + password (string) - New user's password.
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                 "id": 2,
+                 "name": "Miriam"
+             }
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            }
+
+## Token [/token]
+### Request a token [POST]
+NOTE: id or name or email
+
++ Parameters
+    + id (integer)
+    + name (string)
+    + email (string)
+    + password (string)
+
++ Response 201 (application/json)
+
+    {
+        "msg": "token created",
+        "token": "A_GENERATED_JWT"
+    }
