@@ -19,7 +19,7 @@
 ### Update Post [PUT]
 + Request
     + Header
-        
+
         Authorization: JWT "JWT_TOKEN_HERE"
 
     + Parameters
@@ -29,7 +29,7 @@
         + contents (string)
 
 + Response (application/json)
-    
+
     {
         "id": 1,
         "category_id": 1,
@@ -49,12 +49,12 @@ Move post into recycle bin
 
         Authorization: JWT "JWT_TOKEN_HERE"
 
-+ Response 204 
++ Response 204
 
 ## Posts Collection [/posts]
 ### List all posts [GET]
 + Parameters
-    + filter (string) - Filter by author / category 
+    + filter (string) - Filter by author / category
     + id (string) - Author (user_id) / category
     + page (string) 10 posts per page
 
@@ -81,7 +81,7 @@ Move post into recycle bin
 ## Create Post [POST]
 + Request
     + Header
-        
+
         Authorization: JWT "JWT_TOKEN_HERE"
 
     + Parameters
@@ -102,10 +102,9 @@ Move post into recycle bin
         "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }
 
-## Revision [/post/{post_id}/revision/{revision_id}]
+## Revision [/revision/{revision_id}]
 ### Retrive Revision [GET]
 + Parameters
-    + post_id (string)
     + revision_id (string)
 
 + Response (application/json)
@@ -114,4 +113,51 @@ Move post into recycle bin
         "post_id": 1,
         "updated_at": "2018-03-11 18:56:00",
         "content": "Hello Typist!"
+    }
+
+### Delete Revision [DELETE]
++ Parameters
+    + revision_id
+
++ Response 204
+
+## Revision Collection [/post/{post_id}/revision]
+### List All Revision of a Post [GET]
++ Request
+    + Header
+
+        + Authorization: JWT "JWT_TOKEN_HERE"
+    + Parameters
+
+        + post_id (string)
+
++ Response (application/json)
+    [
+        {
+            "id": 100,
+            "updated_at": "2018-03-29 17:00:00",
+        }
+        ...
+    ]
+
+### Delete All Revision of a Post [DELETE]
++ Parameters
+    + post_id (string)
+
++ Response 204
+
+### Create a Revision [POST]
++ Request
+    + Header
+        Authorization: JWT "JWT_TOKEN_HERE"
+
+    + Parameters
+        + post_id (string)
+        + content (string)
+
++ Response (application/json)
+    {
+        "id": 103,
+        "post_id": 1,
+        "content": "Lorem Ipsum"
     }
